@@ -30,7 +30,7 @@ class VictoryPieChart extends Component {
       <div
         className="victory-pie-charts"
       >
-        <h2> Victory Pie Charts! </h2>
+        <h2> Victory Pie Charts </h2>
         <div className="victory-pie-charts__content">
           <div className="victory-pie-charts__chart-wrap">
             <VictoryPie
