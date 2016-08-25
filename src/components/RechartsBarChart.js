@@ -30,8 +30,8 @@ export default class RechartsBarChart extends Component {
               <CartesianGrid stroke='grey'/>
               <Area type='monotone' dataKey='grams salt needed for water' fill='#8884d8' stroke='#8884d8'/>
               {/* <Line type='monotone' dataKey='w' stroke='#ff7300'/> */}
-              <Bar dataKey='grams salt needed for water' barSize={20} fill='blue'/>
-              <Bar dataKey='grams salt needed for vinegar' barSize={20} fill='pink'/>
+              <Bar dataKey='grams salt needed for water' barSize={40} fill='lightblue'/>
+              <Bar dataKey='grams salt needed for vinegar' barSize={40} fill='lightgreen'/>
           </ComposedChart>
           </div>
         </div>

@@ -5,8 +5,8 @@ import RechartsBarChart from './components/RechartsBarChart';
 
 const App = () => (
   <div>
-    <RechartsBarChart />
     <RechartsLineChart />
+    <RechartsBarChart />
     <VictoryPieChart />
   </div>
 );

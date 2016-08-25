@@ -6,9 +6,15 @@ body {
   text-align: center;
 }
 
+h1 {
+  font-style: italic;
+  font-size: 2.5rem;
+}
+
 /* victory pie chart */
 
 .victory-pie-charts {
+  padding: 1%;
   text-align: center;
   color: darkred;
 
@@ -26,7 +32,7 @@ body {
 /* recharts line chart */
 
 .recharts-line-chart {
-  padding-top: 1%;
+  padding: 1%;
   background-color: white;
   color: darkblue;
 }
@@ -44,4 +50,16 @@ body {
 .recharts-line-char__info-eq {
   text-align: center;
   font-size: 2rem;
+}
+
+/* recharts bar chart */
+
+.recharts-bar-chart {
+  padding: 1%;
+  color: steelblue;
+}
+
+.recharts-bar-chart__content {
+  display: flex;
+  justify-content: center;
 }
