@@ -11,9 +11,6 @@ class VictoryPieChart extends Component {
 
   render() {
     const dataPulledFromFireBase = this.props.victoryPieCharts.data;
-    const divStyle = {
-      maxWidth: '450px'
-    };
     // the below allows there to be different styles for different conditions
     // const pieChartStyle = {
     //   data: {
@@ -31,41 +28,110 @@ class VictoryPieChart extends Component {
 
     return (
       <div
-        className="pie-chart"
-        style={divStyle}
+        className="victory-pie-charts"
       >
-        <h2> Victory Pie Chart </h2>
-        <VictoryPie
-          style={{
-            labels: {
-              fill: "darkred",
-              fontSize: 10,
-              fontWeight: "normal",
-              padding: 200
-            }
-          }}
-          colorScale={[
-             "#D85F49",
-             "#F66D3B",
-             "#D92E1D",
-             "#D73C4C",
-             "#FFAF59",
-             "#E28300",
-             "#F6A57F"
-           ]}
-          data={dataPulledFromFireBase}
-        />
-        {/* <svg>
-          <VictoryLabel
-            x={10}
-            y={20}
-            lineHeight={2}
-            textAnchor="start"
-            verticalAnchor="start"
-          >
-            label text
-          </VictoryLabel>
-        </svg> */}
+        <h2> Victory Pie Charts! </h2>
+        <div className="victory-pie-charts__content">
+          <div className="victory-pie-charts__chart-wrap">
+            <VictoryPie
+              style={{
+                labels: {
+                  fill: "darkred",
+                  fontSize: 10,
+                  fontWeight: "normal",
+                  padding: 200
+                }
+              }}
+              colorScale={[
+                 "#D85F49",
+                 "#F66D3B",
+                 "#D92E1D",
+                 "#D73C4C",
+                 "#FFAF59",
+                 "#E28300",
+                 "#F6A57F"
+               ]}
+              data={dataPulledFromFireBase}
+            />
+            {/* <svg>
+              <VictoryLabel
+                x={10}
+                y={20}
+                lineHeight={2}
+                textAnchor="start"
+                verticalAnchor="start"
+              >
+                label text
+              </VictoryLabel>
+            </svg> */}
+          </div>
+          <div className="victory-pie-charts__chart-wrap">
+            <VictoryPie
+              style={{
+                labels: {
+                  fill: "darkred",
+                  fontSize: 10,
+                  fontWeight: "normal",
+                  padding: 200
+                }
+              }}
+              colorScale={[
+                 "#D85F49",
+                 "#F66D3B",
+                 "#D92E1D",
+                 "#D73C4C",
+                 "#FFAF59",
+                 "#E28300",
+                 "#F6A57F"
+               ]}
+              data={dataPulledFromFireBase}
+            />
+            {/* <svg>
+              <VictoryLabel
+                x={10}
+                y={20}
+                lineHeight={2}
+                textAnchor="start"
+                verticalAnchor="start"
+              >
+                label text
+              </VictoryLabel>
+            </svg> */}
+          </div>
+          <div className="victory-pie-charts__chart-wrap">
+            <VictoryPie
+              style={{
+                labels: {
+                  fill: "darkred",
+                  fontSize: 10,
+                  fontWeight: "normal",
+                  padding: 200
+                }
+              }}
+              colorScale={[
+                 "#D85F49",
+                 "#F66D3B",
+                 "#D92E1D",
+                 "#D73C4C",
+                 "#FFAF59",
+                 "#E28300",
+                 "#F6A57F"
+               ]}
+              data={dataPulledFromFireBase}
+            />
+            {/* <svg>
+              <VictoryLabel
+                x={10}
+                y={20}
+                lineHeight={2}
+                textAnchor="start"
+                verticalAnchor="start"
+              >
+                label text
+              </VictoryLabel>
+            </svg> */}
+          </div>
+        </div>
       </div>
     );
   }

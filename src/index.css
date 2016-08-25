@@ -5,3 +5,18 @@ body {
   padding: 2%;
   text-align: center;
 }
+
+.victory-pie-charts {
+  text-align: center;
+  color: darkred;
+
+}
+
+.victory-pie-charts__content {
+  display: flex;
+  width: 100%;
+}
+
+.victory-pie-charts__chart-wrap {
+  width: 33%;
+}
