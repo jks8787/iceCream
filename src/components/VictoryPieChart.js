@@ -1,47 +1,61 @@
 import React, { Component } from 'react';
-import { VictoryPie, VictoryLabel } from "victory";
-//import { connect } from 'react-redux';
-//import { fetchStaticPieChartData } from '../actions';
-//import * as actions from '../actions';
+import { VictoryPie } from 'victory';
+// import { VictoryLabel } from 'victory';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
 
-export default class VictoryPieChart extends Component {
+class VictoryPieChart extends Component {
   componentWillMount() {
-    // this.props.fetchStaticPieChartData();
+    this.props.fetchPieChartData();
   }
 
   render() {
-    // const dataPulledFromFireBase = this.props.victoryPieCharts.data;
+    const dataPulledFromFireBase = this.props.victoryPieCharts.data;
     const divStyle = {
-      backgroundColor: 'pink',
       maxWidth: '450px'
     };
+    // the below allows there to be different styles for different conditions
+    // const pieChartStyle = {
+    //   data: {
+    //     stroke: (data) => data.y < 75 ?
+    //       "pink" : "black",
+    //     strokeWidth: (data) => data.y < 75 ?
+    //       1 : 1
+    //   },
+    //   labels: {
+    //     fill: "white",
+    //     fontSize: 10,
+    //     fontWeight: "normal"
+    //   }
+    // };
 
     return (
       <div
-        className="static-pie-chart"
+        className="pie-chart"
         style={divStyle}
       >
         <h2> Victory Pie Chart </h2>
         <VictoryPie
           style={{
-            data: {
-              stroke: (data) => data.y > 75 ?
-                "black" : "transparent",
-              opacity: (data) => data.y > 75 ?
-                1 : 0.4
-            },
             labels: {
-              fill: "white",
-              fontSize: 12,
-              fontWeight: "bold"
+              fill: "darkred",
+              fontSize: 10,
+              fontWeight: "normal",
+              padding: 200
             }
           }}
-          data={[
-            {x: "Milk", y: 10},
-            {x: "Sugar", y: 30}
-          ]}
+          colorScale={[
+             "#D85F49",
+             "#F66D3B",
+             "#D92E1D",
+             "#D73C4C",
+             "#FFAF59",
+             "#E28300",
+             "#F6A57F"
+           ]}
+          data={dataPulledFromFireBase}
         />
-        <svg>
+        {/* <svg>
           <VictoryLabel
             x={10}
             y={20}
@@ -49,27 +63,18 @@ export default class VictoryPieChart extends Component {
             textAnchor="start"
             verticalAnchor="start"
           >
-            Milk: 10%
+            label text
           </VictoryLabel>
-          <VictoryLabel
-            x={10}
-            y={40}
-            lineHeight={2}
-            textAnchor="start"
-            verticalAnchor="start"
-          >
-            Sugar: 30%
-          </VictoryLabel>
-        </svg>
+        </svg> */}
       </div>
     );
   }
 };
 
-// function mapStateToProps(state) {
-//   return {
-//     victoryPieCharts: state.victoryPieCharts
-//   };
-// }
-//
-// export default connect(mapStateToProps, actions)(VictoryPieChart);
+function mapStateToProps(state) {
+  return {
+    victoryPieCharts: state.victoryPieCharts
+  };
+}
+
+export default connect(mapStateToProps, actions)(VictoryPieChart);
