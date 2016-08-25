@@ -24,16 +24,9 @@ export default class RechartsLineChart extends Component {
         className="recharts-line-chart"
       >
         <h2> Recharts Line Chart </h2>
-        <h3> Freezing Point Depression </h3>
-        <h4> Use salt to lower the melting point of ice </h4>
-        <div className="recharts-line-char__info">
-          <p>{introInfo}</p>
-          <p>{detailInfo}</p>
-          <p dangerouslySetInnerHTML={this.createMarkup(eqInfo.eqDetail)}></p>
-          <div className="recharts-line-char__info-eq">{eqInfo.eq}</div>
-        </div>
         <div className="recharts-line-chart__content">
           <div className="recharts-line-chart__chart-wrap">
+            <h3> Freezing Point Depression <em>aka</em> Making it Cold</h3>
             <LineChart width={1200} height={400} data={data}
                   margin={{top: 20, right: 30, left: 40, bottom: 5}}>
              <XAxis dataKey="temp"/>
@@ -45,6 +38,12 @@ export default class RechartsLineChart extends Component {
              <Line type="monotone" dataKey="mol/kg salt in vinegar" stroke="#008000" activeDot={{r: 8}}/>
             </LineChart>
           </div>
+        </div>
+        <div className="recharts-line-char__info">
+          <p>{introInfo}</p>
+          <p>{detailInfo}</p>
+          <p dangerouslySetInnerHTML={this.createMarkup(eqInfo.eqDetail)}></p>
+          <div className="recharts-line-char__info-eq">{eqInfo.eq}</div>
         </div>
       </div>
     );
