@@ -10,21 +10,37 @@ class VictoryPieChart extends Component {
   }
 
   render() {
-    const dataPulledFromFireBase = this.props.victoryPieCharts.data;
-    // the below allows there to be different styles for different conditions
-    // const pieChartStyle = {
-    //   data: {
-    //     stroke: (data) => data.y < 75 ?
-    //       "pink" : "black",
-    //     strokeWidth: (data) => data.y < 75 ?
-    //       1 : 1
-    //   },
-    //   labels: {
-    //     fill: "white",
-    //     fontSize: 10,
-    //     fontWeight: "normal"
-    //   }
-    // };
+    const dataPulledFromFireBaseATK = this.props.victoryPieCharts.atk_data;
+    const dataPulledFromFireBaseChefSteps = this.props.victoryPieCharts.chef_steps_data;
+    const dataPulledFromFireBaseJamieOliver = this.props.victoryPieCharts.jamie_oliver_data;
+    const pieChartStyle = {
+      labels: {
+        fill: "darkred",
+        fontSize: 10,
+        fontWeight: "normal",
+        padding: 25
+      }
+    };
+
+  // showing styles based on data
+  // const max = Math.max.apply(Math, dataPulledFromFireBaseATK.map(function(o){return o.y;}));
+  // const pieChartStyle = {
+  //   data: {
+  //     stroke: (data) => data.y === max ?
+  //       "pink" : "transparent",
+  //     strokeWidth: (data) => data.y === max ?
+  //       5 : 0
+  //   },
+  //   labels: {
+  //     fill: "darkred",
+  //     fontSize: 10,
+  //     fontWeight: "normal",
+  //     padding: 25
+  //   }
+  // };
+
+
+    console.log(pieChartStyle);
 
     return (
       <div
@@ -34,14 +50,7 @@ class VictoryPieChart extends Component {
         <div className="victory-pie-charts__content">
           <div className="victory-pie-charts__chart-wrap">
             <VictoryPie
-              style={{
-                labels: {
-                  fill: "darkred",
-                  fontSize: 10,
-                  fontWeight: "normal",
-                  padding: 200
-                }
-              }}
+              style={pieChartStyle}
               colorScale={[
                  "#D85F49",
                  "#F66D3B",
@@ -51,30 +60,12 @@ class VictoryPieChart extends Component {
                  "#E28300",
                  "#F6A57F"
                ]}
-              data={dataPulledFromFireBase}
+              data={dataPulledFromFireBaseATK}
             />
-            {/* <svg>
-              <VictoryLabel
-                x={10}
-                y={20}
-                lineHeight={2}
-                textAnchor="start"
-                verticalAnchor="start"
-              >
-                label text
-              </VictoryLabel>
-            </svg> */}
           </div>
           <div className="victory-pie-charts__chart-wrap">
             <VictoryPie
-              style={{
-                labels: {
-                  fill: "darkred",
-                  fontSize: 10,
-                  fontWeight: "normal",
-                  padding: 200
-                }
-              }}
+              style={pieChartStyle}
               colorScale={[
                  "#D85F49",
                  "#F66D3B",
@@ -84,30 +75,12 @@ class VictoryPieChart extends Component {
                  "#E28300",
                  "#F6A57F"
                ]}
-              data={dataPulledFromFireBase}
+              data={dataPulledFromFireBaseJamieOliver}
             />
-            {/* <svg>
-              <VictoryLabel
-                x={10}
-                y={20}
-                lineHeight={2}
-                textAnchor="start"
-                verticalAnchor="start"
-              >
-                label text
-              </VictoryLabel>
-            </svg> */}
           </div>
           <div className="victory-pie-charts__chart-wrap">
             <VictoryPie
-              style={{
-                labels: {
-                  fill: "darkred",
-                  fontSize: 10,
-                  fontWeight: "normal",
-                  padding: 200
-                }
-              }}
+              style={pieChartStyle}
               colorScale={[
                  "#D85F49",
                  "#F66D3B",
@@ -117,19 +90,8 @@ class VictoryPieChart extends Component {
                  "#E28300",
                  "#F6A57F"
                ]}
-              data={dataPulledFromFireBase}
+              data={dataPulledFromFireBaseChefSteps}
             />
-            {/* <svg>
-              <VictoryLabel
-                x={10}
-                y={20}
-                lineHeight={2}
-                textAnchor="start"
-                verticalAnchor="start"
-              >
-                label text
-              </VictoryLabel>
-            </svg> */}
           </div>
         </div>
       </div>
