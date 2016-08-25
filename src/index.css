@@ -6,6 +6,8 @@ body {
   text-align: center;
 }
 
+/* victory pie chart */
+
 .victory-pie-charts {
   text-align: center;
   color: darkred;
@@ -19,4 +21,17 @@ body {
 
 .victory-pie-charts__chart-wrap {
   width: 33%;
+}
+
+/* recharts line chart */
+
+.recharts-line-chart {
+  padding-top: 1%;
+  background-color: white;
+  color: darkblue;
+}
+
+.recharts-line-char__info {
+  text-align: left;
+  padding: 2%;
 }
