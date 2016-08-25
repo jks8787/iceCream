@@ -9,6 +9,43 @@ class VictoryPieChart extends Component {
     this.props.fetchPieChartData();
   }
 
+  sortData(data) {
+    let sorted = data;
+    if (data) {
+      sorted = data.sort((a,b)=> a.x.localeCompare(b.x) );
+    }
+    return sorted;
+  }
+
+  dataStyles(data) {
+    let pieChartStyle = {
+      labels: {
+        fill: "darkred",
+        fontSize: 10,
+        fontWeight: "normal",
+        padding: 25
+      }
+    };
+    if (data) {
+      const max = Math.max.apply(Math, data.map(function(o){return o.y;}));
+      pieChartStyle = {
+        data: {
+          stroke: (data) => data.y === max ?
+            "grey" : "transparent",
+          strokeWidth: (data) => data.y === max ?
+            2 : 2
+        },
+        labels: {
+          fill: "darkred",
+          fontSize: 10,
+          fontWeight: "normal",
+          padding: 25
+        }
+      };
+    }
+    return pieChartStyle;
+  }
+
   render() {
     const dataPulledFromFireBaseATK = this.props.victoryPieCharts.atk_data;
     const dataPulledFromFireBaseChefSteps = this.props.victoryPieCharts.chef_steps_data;
@@ -22,26 +59,6 @@ class VictoryPieChart extends Component {
       }
     };
 
-  // showing styles based on data
-  // const max = Math.max.apply(Math, dataPulledFromFireBaseATK.map(function(o){return o.y;}));
-  // const pieChartStyle = {
-  //   data: {
-  //     stroke: (data) => data.y === max ?
-  //       "pink" : "transparent",
-  //     strokeWidth: (data) => data.y === max ?
-  //       5 : 0
-  //   },
-  //   labels: {
-  //     fill: "darkred",
-  //     fontSize: 10,
-  //     fontWeight: "normal",
-  //     padding: 25
-  //   }
-  // };
-
-
-    console.log(pieChartStyle);
-
     return (
       <div
         className="victory-pie-charts"
@@ -49,48 +66,44 @@ class VictoryPieChart extends Component {
         <h2> Victory Pie Charts </h2>
         <div className="victory-pie-charts__content">
           <div className="victory-pie-charts__chart-wrap">
+            <h3 className="victory-pie-charts__chart-header">ATK</h3>
             <VictoryPie
-              style={pieChartStyle}
+              style={this.dataStyles(dataPulledFromFireBaseATK)}
               colorScale={[
                  "#D85F49",
                  "#F66D3B",
                  "#D92E1D",
                  "#D73C4C",
-                 "#FFAF59",
-                 "#E28300",
-                 "#F6A57F"
+                 "#FFAF59"
                ]}
-              data={dataPulledFromFireBaseATK}
+              data={this.sortData(dataPulledFromFireBaseATK)}
             />
           </div>
           <div className="victory-pie-charts__chart-wrap">
+            <h3 className="victory-pie-charts__chart-header">Jamie Oliver</h3>
             <VictoryPie
-              style={pieChartStyle}
+              style={this.dataStyles(dataPulledFromFireBaseJamieOliver)}
               colorScale={[
-                 "#D85F49",
-                 "#F66D3B",
-                 "#D92E1D",
-                 "#D73C4C",
-                 "#FFAF59",
-                 "#E28300",
-                 "#F6A57F"
+                 "#ff6699",
+                 "#ff99ff",
+                 "#ffcccc",
+                 "#ff3399"
                ]}
-              data={dataPulledFromFireBaseJamieOliver}
+              data={this.sortData(dataPulledFromFireBaseJamieOliver)}
             />
           </div>
           <div className="victory-pie-charts__chart-wrap">
+            <h3 className="victory-pie-charts__chart-header">Chef Steps</h3>
             <VictoryPie
-              style={pieChartStyle}
+              style={this.dataStyles(dataPulledFromFireBaseChefSteps)}
               colorScale={[
-                 "#D85F49",
-                 "#F66D3B",
-                 "#D92E1D",
-                 "#D73C4C",
-                 "#FFAF59",
-                 "#E28300",
-                 "#F6A57F"
+                 "#3399ff",
+                 "#33ccff",
+                 "#00ffff",
+                 "#99ccff",
+                 "#6699ff"
                ]}
-              data={dataPulledFromFireBaseChefSteps}
+              data={this.sortData(dataPulledFromFireBaseChefSteps)}
             />
           </div>
         </div>
