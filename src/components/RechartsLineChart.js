@@ -6,11 +6,12 @@ export default class RechartsLineChart extends Component {
     return {__html: htmlData};
   }
   render() {
+    // this is for pure Acetic acid not really vinegar but ... will update with better data later
     const data = [
-          { temp: 5, b: 2.3},
-          { temp: 10, b: 2.7},
-          { temp: 15, b: 4.0},
-          { temp: 20, b: 5.4},
+          { temp: '-5C', 'mol/kg salt in water': 2.3, 'mol/kg salt in vinegar': 0.6},
+          { temp: '-10C', 'mol/kg salt in water': 2.7, 'mol/kg salt in vinegar': 1.3},
+          { temp: '-15C', 'mol/kg salt in water': 4.0, 'mol/kg salt in vinegar': 1.9},
+          { temp: '-20C', 'mol/kg salt in water': 5.4,  'mol/kg salt in vinegar': 2.6},
     ];
     const introInfo = 'use the freezing point depression equation to calculate how much a solvent’s freezing point will drop as a solute is added';
     const detailInfo = 'Water has a single freezing point (32 degrees Fahrenheit or 0 degrees Celsius). When particles are dissolved in water, that freezing point goes down, meaning the water will need to get colder before it turns to ice. This phenomenon is referred to as freezing point depression.';
@@ -28,19 +29,20 @@ export default class RechartsLineChart extends Component {
         <div className="recharts-line-char__info">
           <p>{introInfo}</p>
           <p>{detailInfo}</p>
-          <p>{eqInfo.eq}</p>
           <p dangerouslySetInnerHTML={this.createMarkup(eqInfo.eqDetail)}></p>
+          <div className="recharts-line-char__info-eq">{eqInfo.eq}</div>
         </div>
         <div className="recharts-line-chart__content">
           <div className="recharts-line-chart__chart-wrap">
-            <LineChart width={1200} height={300} data={data}
-                  margin={{top: 5, right: 30, left: 20, bottom: 5}}>
+            <LineChart width={1200} height={400} data={data}
+                  margin={{top: 20, right: 30, left: 40, bottom: 5}}>
              <XAxis dataKey="temp"/>
-             <YAxis/>
+             <YAxis label="b( mol solute/kg solvent )"/>
              <CartesianGrid strokeDasharray="3 3"/>
              <Tooltip/>
-             <Legend />
-             <Line type="monotone" dataKey="b" stroke="#8884d8" activeDot={{r: 8}}/>
+             <Legend/>
+             <Line type="monotone" dataKey="mol/kg salt in water" stroke="#8884d8" activeDot={{r: 8}}/>
+             <Line type="monotone" dataKey="mol/kg salt in vinegar" stroke="#008000" activeDot={{r: 8}}/>
             </LineChart>
           </div>
         </div>
