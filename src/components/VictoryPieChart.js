@@ -50,14 +50,6 @@ class VictoryPieChart extends Component {
     const dataPulledFromFireBaseATK = this.props.victoryPieCharts.atk_data;
     const dataPulledFromFireBaseChefSteps = this.props.victoryPieCharts.chef_steps_data;
     const dataPulledFromFireBaseJamieOliver = this.props.victoryPieCharts.jamie_oliver_data;
-    const pieChartStyle = {
-      labels: {
-        fill: "darkred",
-        fontSize: 10,
-        fontWeight: "normal",
-        padding: 25
-      }
-    };
 
     return (
       <div
