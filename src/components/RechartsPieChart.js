@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { PieChart, Pie, Sector, Cell } from 'recharts';
+import { PieChart, Pie, Sector, Cell, Legend } from 'recharts';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
@@ -18,10 +18,18 @@ class RechartsPieChart extends Component {
     const x  = cx + radius * Math.cos(-midAngle * RADIAN);
     const y = cy  + radius * Math.sin(-midAngle * RADIAN);
     return (
-      <text x={x} y={y} fill="black" textAnchor={x > cx ? 'start' : 'end'} 	dominantBaseline="central">
-      	{`${(percent * 100).toFixed(0)}% ${name}`}
+      <text x={x} y={y} fill="black" fontSize="13px" textAnchor={x > cx ? 'start' : 'end'} 	dominantBaseline="central">
+      	{`${(percent * 100).toFixed(0)}%`}
       </text>
     );
+  }
+
+  setColors() {
+    // set colors so that each data object with the same name has the same color
+  }
+
+  renderForSize(){
+    // maybe here i need to trigger calc the size i want the pic chart
   }
 
   sortData(data) {
@@ -47,15 +55,16 @@ class RechartsPieChart extends Component {
         <div className='recharts-pie-chart__content'>
           <div className='recharts-pie-chart__chart-wrap'>
             <PieChart
-              width={400}
-              height={400}
+              width={450}
+              height={300}
               onMouseEnter={this.onPieEnter}
               margin={{top: 0, right: 0, left: 0, bottom: 10}}
+              wrapperStyle={{border: '1ps solid pink'}}
             >
               <Pie
                 data={dataPulledFromFireBaseATK}
-                cx={300}
-                cy={300}
+                cx={225}
+                cy={150}
                 labelLine={false}
                 label={this.renderCustomizedLabel}
                 outerRadius={100}
@@ -65,17 +74,19 @@ class RechartsPieChart extends Component {
                   dataPulledFromFireBaseATK ? dataPulledFromFireBaseATK.map((entry, index) => <Cell key={index} fill={COLORS[index % COLORS.length]}/>) : null
                 }
               </Pie>
+              {/* layout="horizontal" to stack the legend */}
+              <Legend align="left" verticalAlign="bottom" wrapperStyle={{position: 'relative', paddingTop: '1%'}}/>
             </PieChart>
             <PieChart
-             width={400}
-             height={400}
+             width={450}
+             height={300}
              onMouseEnter={this.onPieEnter}
              margin={{top: 0, right: 0, left: 0, bottom: 10}}
              >
               <Pie
                 data={dataPulledFromFireBaseJamieOliver}
-                cx={300}
-                cy={300}
+                cx={225}
+                cy={150}
                 labelLine={false}
                 label={this.renderCustomizedLabel}
                 outerRadius={100}
@@ -85,17 +96,18 @@ class RechartsPieChart extends Component {
                   dataPulledFromFireBaseJamieOliver ? dataPulledFromFireBaseJamieOliver.map((entry, index) => <Cell key={index} fill={COLORS[index % COLORS.length]}/>) : null
                 }
               </Pie>
+              <Legend align="left" verticalAlign="bottom" wrapperStyle={{position: 'relative', paddingTop: '1%'}}/>
             </PieChart>
             <PieChart
-             width={400}
-             height={400}
+             width={450}
+             height={300}
              onMouseEnter={this.onPieEnter}
              margin={{top: 0, right: 0, left: 0, bottom: 10}}
              >
               <Pie
                 data={dataPulledFromFireBaseChefSteps}
-                cx={300}
-                cy={300}
+                cx={225}
+                cy={150}
                 labelLine={false}
                 label={this.renderCustomizedLabel}
                 outerRadius={100}
@@ -105,6 +117,7 @@ class RechartsPieChart extends Component {
                   dataPulledFromFireBaseChefSteps ? dataPulledFromFireBaseChefSteps.map((entry, index) => <Cell key={index} fill={COLORS[index % COLORS.length]}/>) : null
                 }
               </Pie>
+              <Legend align="left" verticalAlign="bottom" wrapperStyle={{position: 'relative', paddingTop: '1%'}}/>
             </PieChart>
           </div>
         </div>

@@ -71,3 +71,8 @@ h1 {
   display: flex;
   padding-bottom: 3%;
 }
+
+.recharts-wrapper {
+  border: 1px solid pink;
+  width: 33%
+}
