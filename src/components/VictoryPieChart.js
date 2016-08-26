@@ -47,9 +47,9 @@ class VictoryPieChart extends Component {
   }
 
   render() {
-    const dataPulledFromFireBaseATK = this.props.victoryPieCharts.atk_data;
-    const dataPulledFromFireBaseChefSteps = this.props.victoryPieCharts.chef_steps_data;
-    const dataPulledFromFireBaseJamieOliver = this.props.victoryPieCharts.jamie_oliver_data;
+    const dataPulledFromFireBaseATK = this.props.victoryPieCharts.atk_data_vic;
+    const dataPulledFromFireBaseChefSteps = this.props.victoryPieCharts.chef_steps_data_vic;
+    const dataPulledFromFireBaseJamieOliver = this.props.victoryPieCharts.jamie_oliver_data_vic;
 
     return (
       <div

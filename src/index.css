@@ -1,9 +1,10 @@
 body {
   background-color: whitesmoke;
-  font-family: sans-serif;
   margin: 0;
   padding: 2%;
   text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  /* font-family: 'Dosis', sans-serif; */
 }
 
 h1 {
@@ -62,4 +63,11 @@ h1 {
 .recharts-bar-chart__content {
   display: flex;
   justify-content: center;
+}
+
+/* recharts pie chart */
+
+.recharts-pie-chart__chart-wrap {
+  display: flex;
+  padding-bottom: 3%;
 }

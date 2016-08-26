@@ -1,28 +1,44 @@
 import React, { Component } from 'react';
 import { PieChart, Pie, Sector, Cell } from 'recharts';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
 
-export default class RechartsPieChart extends Component {
+class RechartsPieChart extends Component {
+  componentWillMount() {
+    this.props.fetchPieChartData();
+  }
 
   onPieEnter() {
     console.log('entered?');
   }
 
-  renderCustomizedLabel({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) {
+  renderCustomizedLabel({ cx, cy, midAngle, innerRadius, outerRadius, percent, index, name }) {
     const RADIAN = Math.PI / 180;
    	const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
     const x  = cx + radius * Math.cos(-midAngle * RADIAN);
     const y = cy  + radius * Math.sin(-midAngle * RADIAN);
     return (
-      <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} 	dominantBaseline="central">
-      	{`${(percent * 100).toFixed(0)}%`}
+      <text x={x} y={y} fill="black" textAnchor={x > cx ? 'start' : 'end'} 	dominantBaseline="central">
+      	{`${(percent * 100).toFixed(0)}% ${name}`}
       </text>
     );
   }
 
+  sortData(data) {
+    let sorted = data;
+    if (data) {
+      // put them in alphabetical order
+      sorted = data.sort((a,b)=> a.name.localeCompare(b.name) );
+    }
+    return sorted;
+  }
+
   render() {
-    const data = [{name: 'Group A', value: 400}, {name: 'Group B', value: 300},
-                      {name: 'Group C', value: 300}, {name: 'Group D', value: 200}];
-    const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+    const dataPulledFromFireBaseATK = this.sortData(this.props.victoryPieCharts.atk_data_rc);
+    const dataPulledFromFireBaseChefSteps = this.sortData(this.props.victoryPieCharts.chef_steps_data_rc);
+    const dataPulledFromFireBaseJamieOliver = this.sortData(this.props.victoryPieCharts.jamie_oliver_data_rc);
+
+    const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8'];
     return (
       <div
         className='recharts-pie-chart'
@@ -30,18 +46,63 @@ export default class RechartsPieChart extends Component {
         <h2> Recharts Pie Chart </h2>
         <div className='recharts-pie-chart__content'>
           <div className='recharts-pie-chart__chart-wrap'>
-            <PieChart width={800} height={400} onMouseEnter={this.onPieEnter}>
+            <PieChart
+              width={400}
+              height={400}
+              onMouseEnter={this.onPieEnter}
+              margin={{top: 0, right: 0, left: 0, bottom: 10}}
+            >
               <Pie
-                data={data}
+                data={dataPulledFromFireBaseATK}
                 cx={300}
-                cy={200}
+                cy={300}
                 labelLine={false}
                 label={this.renderCustomizedLabel}
-                outerRadius={80}
+                outerRadius={100}
                 fill="#8884d8"
               >
                 {
-                  data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]}/>)
+                  dataPulledFromFireBaseATK ? dataPulledFromFireBaseATK.map((entry, index) => <Cell key={index} fill={COLORS[index % COLORS.length]}/>) : null
+                }
+              </Pie>
+            </PieChart>
+            <PieChart
+             width={400}
+             height={400}
+             onMouseEnter={this.onPieEnter}
+             margin={{top: 0, right: 0, left: 0, bottom: 10}}
+             >
+              <Pie
+                data={dataPulledFromFireBaseJamieOliver}
+                cx={300}
+                cy={300}
+                labelLine={false}
+                label={this.renderCustomizedLabel}
+                outerRadius={100}
+                fill="#8884d8"
+              >
+                {
+                  dataPulledFromFireBaseJamieOliver ? dataPulledFromFireBaseJamieOliver.map((entry, index) => <Cell key={index} fill={COLORS[index % COLORS.length]}/>) : null
+                }
+              </Pie>
+            </PieChart>
+            <PieChart
+             width={400}
+             height={400}
+             onMouseEnter={this.onPieEnter}
+             margin={{top: 0, right: 0, left: 0, bottom: 10}}
+             >
+              <Pie
+                data={dataPulledFromFireBaseChefSteps}
+                cx={300}
+                cy={300}
+                labelLine={false}
+                label={this.renderCustomizedLabel}
+                outerRadius={100}
+                fill="#8884d8"
+              >
+                {
+                  dataPulledFromFireBaseChefSteps ? dataPulledFromFireBaseChefSteps.map((entry, index) => <Cell key={index} fill={COLORS[index % COLORS.length]}/>) : null
                 }
               </Pie>
             </PieChart>
@@ -51,3 +112,11 @@ export default class RechartsPieChart extends Component {
     );
   }
 };
+
+function mapStateToProps(state) {
+  return {
+    victoryPieCharts: state.victoryPieCharts
+  };
+}
+
+export default connect(mapStateToProps, actions)(RechartsPieChart);
