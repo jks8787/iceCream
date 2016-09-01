@@ -67,7 +67,7 @@ h1 {
 
 /* recharts pie chart */
 
-.recharts-pie-chart__chart-wrap {
+.recharts-pie-chart__content {
   display: flex;
   padding-bottom: 3%;
 }

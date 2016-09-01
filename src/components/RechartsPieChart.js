@@ -77,6 +77,8 @@ class RechartsPieChart extends Component {
               {/* layout="horizontal" to stack the legend */}
               <Legend align="left" verticalAlign="bottom" wrapperStyle={{position: 'relative', paddingTop: '1%'}}/>
             </PieChart>
+          </div>
+          <div className='recharts-pie-chart__chart-wrap'>
             <PieChart
              width={450}
              height={300}
@@ -98,6 +100,8 @@ class RechartsPieChart extends Component {
               </Pie>
               <Legend align="left" verticalAlign="bottom" wrapperStyle={{position: 'relative', paddingTop: '1%'}}/>
             </PieChart>
+          </div>
+          <div className='recharts-pie-chart__chart-wrap'>
             <PieChart
              width={450}
              height={300}

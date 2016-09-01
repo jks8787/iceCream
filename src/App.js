@@ -7,9 +7,9 @@ import RechartsPieChart from './components/RechartsPieChart';
 const App = () => (
   <div>
     <RechartsPieChart />
+    <VictoryPieChart />
     <RechartsLineChart />
     <RechartsBarChart />
-    <VictoryPieChart />
   </div>
 );
 
